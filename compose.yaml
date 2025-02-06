@@ -1,0 +1,17 @@
+services:
+  db: 
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=geheim
+    restart: on-failure:10
+    deploy:
+      replicas: 1
+  pma: 
+    image: phpmyadmin
+    environment:
+      - PMA_HOST=db
+    ports:
+      - 80:80
+    restart: on-failure:10
+    deploy:
+      replicas: 1
